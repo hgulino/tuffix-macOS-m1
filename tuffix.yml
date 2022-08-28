@@ -9,11 +9,6 @@
 - hosts: all
   remote_user: root
   tasks:
-    
-    - name: Update repositories cache and update all packages to the latest version
-      apt:
-        update_cache: yes
-        #upgrade: dist
 
     - name: Remove dependencies that are no longer required
       apt:
@@ -150,10 +145,6 @@
       shell: |
         apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
         apt-add-repository https://cli.github.com/packages
-
-    - name: Update repositories cache
-      apt:
-        update_cache: yes
     
     - name: GitHub gh
       apt:
@@ -184,10 +175,6 @@
       shell: |
         cat /tmp/bazel-release.pub.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/bazel.gpg
         echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
-
-    - name: Update repositories cache
-      apt:
-        update_cache: yes
     
     - name: Bazel
       apt:
